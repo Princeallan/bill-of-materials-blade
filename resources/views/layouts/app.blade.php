@@ -171,12 +171,12 @@
                                 Dashboard
                             </a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="/boms">
-                                <span data-feather="file"></span>
-                                BOMs
-                            </a>
-                        </li>
+{{--                        <li class="nav-item">--}}
+{{--                            <a class="nav-link" href="/boms">--}}
+{{--                                <span data-feather="file"></span>--}}
+{{--                                BOMs--}}
+{{--                            </a>--}}
+{{--                        </li>--}}
                         <li class="nav-item">
                             <a class="nav-link" href="/products">
                                 <span data-feather="shopping-cart"></span>
