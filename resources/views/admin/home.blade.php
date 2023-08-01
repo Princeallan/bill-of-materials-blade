@@ -211,13 +211,17 @@
                 '_token': "{{ csrf_token() }}",
             };
 
-            for (const product in selectedProducts) {
+            for (let product in selectedProducts) {
+                const parsedProduct = JSON.parse(product)
+                console.log(parsedProduct);
                 data.rawMaterials.push({
-                    product: product,
-                    quantity: selectedProducts[product]
+                    id: parsedProduct.id,
+                    qty: selectedProducts[product],
+                    price: parsedProduct.price,
                 });
             }
-
+            console.log(data)
+            alert("alaaa")
             // AJAX to post form data to the /bom endpoint
             $.ajax({
                 type: 'POST',

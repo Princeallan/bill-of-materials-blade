@@ -58,16 +58,14 @@ class BomController extends Controller
 
     private function saveBomMaterial($bom, mixed $rawMaterials)
     {
-        foreach ($rawMaterials as $rawMaterial) {
-            $material = json_decode($rawMaterial['product']);
-            $quantity = $rawMaterial['quantity'] ?? $material->qty;
+        foreach ($rawMaterials as $material) {
 
             BomRawMaterial::create([
                 'bom_id' => $bom->id,
-                'raw_material_id' => $material->id,
-                'quantity' => $quantity,
-                'unit_price' => $material->price,
-                'amount' => $material->amount ?? ($material->price * $quantity),
+                'raw_material_id' => $material['id'],
+                'quantity' => $material['qty'],
+                'unit_price' => $material['price'],
+                'amount' => $material['qty'] * $material['price'],
                 'user_id' => auth()->id()
             ]);
         }
