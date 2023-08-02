@@ -13,6 +13,8 @@
     <link rel="dns-prefetch" href="//fonts.bunny.net">
     <link href="https://fonts.bunny.net/css?family=Nunito" rel="stylesheet">
     <link rel="canonical" href="https://getbootstrap.com/docs/5.0/examples/dashboard/">
+    <link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/sweetalert2@10.10.1/dist/sweetalert2.min.css'>
+
     <!-- Scripts -->
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
     <style>
@@ -166,19 +168,19 @@
                 <div class="position-sticky pt-3">
                     <ul class="nav flex-column" id="menuList">
                         <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="/">
+                            <a class="nav-link {{ (request()->is('/')) ? 'active' : '' }}" aria-current="page" href="/">
                                 <span data-feather="home"></span>
                                 Dashboard
                             </a>
                         </li>
-{{--                        <li class="nav-item">--}}
-{{--                            <a class="nav-link" href="/boms">--}}
-{{--                                <span data-feather="file"></span>--}}
-{{--                                BOMs--}}
-{{--                            </a>--}}
-{{--                        </li>--}}
                         <li class="nav-item">
-                            <a class="nav-link" href="/products">
+                            <a class="nav-link {{ (request()->is('boms')) ? 'active' : '' }}" href="/boms">
+                                <span data-feather="file"></span>
+                                BOMs
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link {{ (request()->is('products')) ? 'active' : '' }}" href="/products">
                                 <span data-feather="shopping-cart"></span>
                                 Products
                             </a>
@@ -212,7 +214,9 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/feather-icons@4.28.0/dist/feather.min.js"
         integrity="sha384-uO3SXW5IuS1ZpFPKugNNWqTZRRglnUJK6UAZ/gxOX80nxEkN9NcGZTftn6RzhGWE"
-        crossorigin="anonymous"></script>
+        crossorigin="anonymous">
+</script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10.16.6/dist/sweetalert2.all.min.js"></script>
 
 <script>
     /* globals Chart:false, feather:false */
@@ -223,13 +227,10 @@
     })()
 
     $(document).ready(function(){
-        $('ul li a').click(function(){
-            $('li a').removeClass("active");
-            $(this).addClass("active");
-        });
 
-        $('#dtBasicExample').DataTable();
-        $('.dataTables_length').addClass('bs-select');
+        // $('#dtBasicExample').DataTable();
+        // $('.dataTables_length').addClass('bs-select');
+
     });
 </script>
 </body>

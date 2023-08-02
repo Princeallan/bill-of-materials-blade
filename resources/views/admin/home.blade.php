@@ -230,6 +230,11 @@
                 contentType: 'application/json',
                 success: function (response) {
                     console.log('Form submitted successfully:', response);
+                    Swal.fire(
+                        'Success!!!',
+                        'Form submitted successfully!',
+                        'success'
+                    )
                     document.getElementById('productForm').reset();
                     selectedProducts = {};
                     updateTable();

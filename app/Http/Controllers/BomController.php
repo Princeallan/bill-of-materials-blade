@@ -76,6 +76,10 @@ class BomController extends Controller
 
     public function listBoms()
     {
-        return view('admin.boms.index');
+        $boms = Bom::query()->leftJoin('products', 'boms.product_id', 'products.id')
+            ->select('boms.*', 'products.name as product')
+            ->get();
+
+        return view('admin.boms.index', compact('boms'));
     }
 }
