@@ -26,7 +26,7 @@
                 @foreach($boms as $key => $bom)
                     <tr>
                         <td> {{ $loop->iteration }}</td>
-                        <td> {{ $bom->product }}</td>
+                        <td> {{ $bom->product->name }}</td>
                         <td> {{ $bom->items_count }}</td>
                         <td> {{ $bom->quantity }}</td>
                         <td> {{ $bom->uom }}</td>
@@ -52,7 +52,6 @@
                     <th class="th-sm">Allow alternative</th>
                     <th class="th-sm">Rate set</th>
                     <th class="th-sm">Date Added</th>
-
                 </tr>
                 </tfoot>
             </table>

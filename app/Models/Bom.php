@@ -21,4 +21,9 @@ class Bom extends Model
         'items_count',
         'project'
     ];
+
+    public function product()
+    {
+        return $this->belongsTo(Product::class, 'product_id');
+    }
 }

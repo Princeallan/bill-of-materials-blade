@@ -10,4 +10,9 @@ class Product extends Model
     use HasFactory;
 
     protected $fillable = ['name', 'slug', 'quantity', 'is_active', 'user_id'];
+
+    public function boms()
+    {
+        return $this->hasMany(Bom::class);
+    }
 }

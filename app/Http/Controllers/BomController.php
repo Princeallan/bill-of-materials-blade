@@ -58,17 +58,19 @@ class BomController extends Controller
 
     private function saveBomMaterial($bom, mixed $rawMaterials)
     {
+        $materials = [];
         foreach ($rawMaterials as $material) {
-
-            BomRawMaterial::create([
+            $materials[] = [
                 'bom_id' => $bom->id,
                 'raw_material_id' => $material['id'],
                 'quantity' => $material['qty'],
                 'unit_price' => $material['price'],
                 'amount' => $material['qty'] * $material['price'],
                 'user_id' => auth()->id()
-            ]);
+            ];
         }
+
+        BomRawMaterial::insert($materials);
 
         return true;
 
@@ -76,9 +78,7 @@ class BomController extends Controller
 
     public function listBoms()
     {
-        $boms = Bom::query()->leftJoin('products', 'boms.product_id', 'products.id')
-            ->select('boms.*', 'products.name as product')
-            ->get();
+        $boms = Bom::with('product')->get();
 
         return view('admin.boms.index', compact('boms'));
     }
